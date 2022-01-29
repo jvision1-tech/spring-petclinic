@@ -22,3 +22,7 @@ pipeline{
             steps{
                  archiveArtifacts artifacts: 'petclinic.zip', fingerprint: true
                 //archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+            }
+        }
+    }
+}
