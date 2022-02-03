@@ -8,12 +8,15 @@ pipeline{
         stage('Maven Build'){
             steps{
                 sh "mvn clean package"
-
-
-        stage('docker build image') {
+            }
+            
+        }
+        
+        stage('Build Docker Image'){
             steps{
-                script (
-                  dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                 script {
+                  app = docker.build("spring-petclinic:${env.BUILD_ID}" 
+                }
             }
         }
     }
