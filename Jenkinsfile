@@ -15,9 +15,8 @@ pipeline{
         stage('Build Docker Image'){
             steps{
                  script {
-                  app = docker.build("spring-petclinic:${env.BUILD_ID}" 
+                  app = docker.build("spring-petclinic:${env.BUILD_ID}" )
                 }
             }
         }
     }
-}
