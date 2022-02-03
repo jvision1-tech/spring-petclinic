@@ -10,10 +10,10 @@ pipeline{
                 sh "mvn clean package"
 
 
-        stage('docker build image')
+        stage('docker build image') {
             steps{
                 script (
-                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                  dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
         }
     }
