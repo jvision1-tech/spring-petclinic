@@ -5,17 +5,15 @@ pipeline{
     }
     
     stages{
-        stage('CDOWNLOAD'){
-            steps{
-                git credentialsId: 'jenkinsfile', 
-                    url: 'https://github.com/jvision1-tech/spring-petclinic.git'
-            }
-            
-        }
-        
         stage('Maven Build'){
             steps{
                 sh "mvn clean package"
+
+
+        stage('docker build image')
+            steps{
+                script (
+                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
         }
     }
