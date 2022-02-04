@@ -1,4 +1,9 @@
 pipeline{
+    environment {
+        registry = "jvision1/jvision1-tech"
+        registryCredential = "docker-jenkins"
+        dockerImage = ''
+    }
     agent any
     tools {
       maven 'Maven'
@@ -19,5 +24,14 @@ pipeline{
                 }
             }
         }
+        stage ('Deploy our image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }    
+                }
+             }
+        } 
     }
 }
