@@ -1,37 +1,56 @@
 pipeline{
-    environment {
-        registry = "jvision1/jvision1-tech"
-        registryCredential = "docker-jenkins"
-        dockerImage = ''
-    }
     agent any
     tools {
       maven 'Maven'
     }
-    
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerjenkins')
+        DOCKERUSER="jvision1"
+	}
     stages{
+        stage('CleanWorkSpace'){
+            steps {
+                cleanWs()
+            }
+        }
         stage('Maven Build'){
             steps{
                 sh "mvn clean package"
             }
             
         }
-        
-        stage('Build Docker Image'){
+
+		stage('Docker Build Petclinic') {
+
+			steps {
+				sh 'docker build -t $DOCKERUSER/spring-clinic:${BUILD_NUMBER}-dev .'
+			}
+		}
+
+		stage('Login to Docker HUB') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker push  $DOCKERUSER/spring-clinic:${BUILD_NUMBER}-dev'
+			}
+		}
+        stage('Cleanup') {
             steps{
-                 script {
-                  app = docker.build("spring-petclinic:${env.BUILD_ID}" )
-                }
+                sh "docker rmi $DOCKERUSER/spring-clinic:${BUILD_NUMBER}-dev"
             }
         }
-        stage ('Deploy our image') {
-            steps {
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                    }    
-                }
-             }
-        } 
-    }
+	}
+
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
+
 }
