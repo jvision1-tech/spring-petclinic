@@ -8,11 +8,6 @@ pipeline{
         DOCKERUSER="jvision1"
 	}
     stages{
-        stage('CleanWorkSpace'){
-            steps {
-                cleanWs()
-            }
-        }
         stage('Maven Build'){
             steps{
                 sh "mvn clean package"
