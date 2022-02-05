@@ -8,6 +8,7 @@ pipeline{
         DOCKERUSER="jvision1"
 	}
     stages{
+        
         stage('Maven Build'){
             steps{
                 sh "mvn clean package"
@@ -41,7 +42,11 @@ pipeline{
             }
         }
 	}
-
+        stage('CleanWorkSpace'){
+            steps {
+                cleanWs()
+            }
+        }
 	post {
 		always {
 			sh 'docker logout'
