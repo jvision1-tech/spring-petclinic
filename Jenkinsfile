@@ -41,7 +41,6 @@ pipeline{
                 sh "docker rmi $DOCKERUSER/spring-clinic:${BUILD_NUMBER}-dev"
             }
         }
-	}
         stage('CleanWorkSpace'){
             steps {
                 cleanWs()
