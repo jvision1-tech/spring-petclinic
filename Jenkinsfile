@@ -5,9 +5,14 @@ pipeline{
     }
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerjenkins')
-        DOCKERUSER="jvision1"
 	}
     stages{
+        stage('SCM'){
+            steps{
+                git credentialsId: 'github token', 
+                url: https://github.com/jvision1-tech/spring-petclinic.git
+            }
+        }
         stage('Maven Build'){
             steps{
                 sh "mvn clean package"
