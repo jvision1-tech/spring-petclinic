@@ -10,7 +10,7 @@ pipeline{
         stage('SCM'){
             steps{
                 git credentialsId: 'github token', 
-                url: https://github.com/jvision1-tech/spring-petclinic.git
+                  url: https://github.com/jvision1-tech/spring-petclinic.git
             }
         }
         stage('Maven Build'){
