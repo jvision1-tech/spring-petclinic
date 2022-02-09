@@ -10,7 +10,7 @@ pipeline{
         stage('SCM'){
             steps{
                 git branch: 'add-Dockerfile',
-                  credentialsId: 'github token', 
+                  credentialsId: 't1h36HaBF6dtNuJmCnBcMFVJ2QnDLTidV78vBf2RXt8', 
                   url: 'git@github.com:jvision1-tech/spring-petclinic.git'
                 sh "ls -lat"
             }
