@@ -5,6 +5,7 @@ pipeline{
     }
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerjenkins')
+        DOCKERUSER='jvision1'
 	}
     stages{
         stage('Maven Build'){
@@ -16,7 +17,7 @@ pipeline{
 		stage('Docker Build Petclinic') {
 
 			steps {
-				sh 'docker build -t $DOCKERUSER/spring-clinic:${BUILD_NUMBER}-dev .'
+				sh 'docker build -t $DOCKERUSER/spring-petclinic:${BUILD_NUMBER}-dev .'
 			}
 		}
 
@@ -30,7 +31,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				sh 'docker push  $DOCKERUSER/spring-clinic:${BUILD_NUMBER}-dev'
+				sh 'docker push  $DOCKERUSER/spring-petclinic:${BUILD_NUMBER}-dev'
 			}
 		}
         stage('Cleanup') {
