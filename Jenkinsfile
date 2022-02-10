@@ -36,7 +36,7 @@ pipeline{
 		}
         stage('Cleanup') {
             steps{
-                sh "docker rmi $DOCKERUSER/spring-clinic:${BUILD_NUMBER}-dev"
+                sh "docker rmi $DOCKERUSER/spring-petclinic:${BUILD_NUMBER}-dev"
             }
         }
         stage('CleanWorkSpace'){
