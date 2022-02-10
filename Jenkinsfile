@@ -13,7 +13,6 @@ pipeline{
             }
             
         }
-
 		stage('Docker Build Petclinic') {
 
 			steps {
