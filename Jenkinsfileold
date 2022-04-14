@@ -34,18 +34,7 @@ pipeline{
 		}
 		stage('cloudformation') {
 			steps{
-				sh"aws cloudformation create-stack --stack-name spring-petclinic-${BUILD_NUMBER} --template-body file://infrastructure.yaml --region 'us-east-1' --parameters ParameterKey=KeyName,ParameterValue=cloudformation ParameterKey=ServerName,ParameterValue=spring-petclinic-${BUILD_NUMBER}"
-			}
-		}
-		stage('WaitingForInstanceToComeUp') {
-			steps{
-				sh ' sleep 2m'
-			}
-		}
-		stage('GetInstanceIP') {
-			steps{
-                springIP = $(sh  "aws ec2 describe-instances --filters Name=tag:Name,Values='spring-petclinic-${BUILD_NUMBER}' --query 'Reservations[].Instances[].PublicIpAddress' --output text")
-                sh "echo ${springIP}"
+				sh"aws cloudformation create-stack --stack-name spring-petclinic-${BUILD_NUMBER} --template-body file://add-infrastructure.yaml --region 'us-east-1' --parameters ParameterKey=KeyName,ParameterValue=cloudformation"
 			}
 		}
         stage('Cleanup') {
