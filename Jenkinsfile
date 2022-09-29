@@ -56,11 +56,11 @@ pipeline{
                 // sh "docker rmi $DOCKERUSER/petclinic:${BUILD_NUMBER}-dev"
             // }
         // }
-         stage('CleanWorkSpace'){
-             steps {
-                 cleanWs()
-             }
-         }
+        //  stage('CleanWorkSpace'){
+            //  steps {
+                //  cleanWs()
+            //  }
+        //  }
 	post {
 		always {
 			sh 'docker logout'
