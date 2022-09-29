@@ -1,8 +1,7 @@
 pipeline{
     agent any
 	tools {
-      maven 'Maven'
-	  jdk   'jdk11'
+      maven 'Maven 3.8.6'
     }
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('docker-jenkins')
