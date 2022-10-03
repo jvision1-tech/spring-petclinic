@@ -49,8 +49,8 @@ pipeline{
 			// steps{
                 // springIP = $(sh  "aws ec2 describe-instances --filters Name=tag:Name,Values='spring-petclinic-${BUILD_NUMBER}' --query 'Reservations[].Instances[].PublicIpAddress' --output text")
                 // sh "echo ${springIP}"
-			}
-		 }
+		//	}
+		// }
         // stage('Cleanup') {
             // steps{
                 // sh "docker rmi $DOCKERUSER/petclinic:${BUILD_NUMBER}-dev"
@@ -61,6 +61,7 @@ pipeline{
          //      cleanWs()
          //     }
          // }
+	}	 
 	post {
 		always {
 			sh 'docker logout'
