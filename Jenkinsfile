@@ -51,20 +51,11 @@ pipeline{
                 // sh "echo ${springIP}"
 		//	}
 		// }
-        // stage('Cleanup') {
-            // steps{
-                // sh "docker rmi $DOCKERUSER/petclinic:${BUILD_NUMBER}-dev"
-            // }
-        // }
-        //stage('CleanWorkSpace'){
-        //    steps {
-         //      cleanWs()
-         //     }
-         // }
 	}	 
 	post {
 		always {
 			sh 'docker logout'
+			sh 'docker rmi $DOCKERUSER/petclinic:${BUILD_NUMBER}-dev'
 			cleanWs()
 		}
 	}	
