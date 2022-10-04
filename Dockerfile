@@ -1,6 +1,5 @@
 # Pull eclipse based image
-FROM eclipse-temurin:latest
-
+FROM amazoncorretto:11.0.16
 # Copying build artifact into docker image  
 COPY target/*.jar /spring-petclinic.jar
 
