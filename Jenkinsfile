@@ -29,7 +29,7 @@ pipeline{
 			}
 		}
 
-		stage('Push') {
+		stage('Push Docker Image to Container Registry') {
 
 			steps {
 				sh 'docker push  $DOCKERUSER/petclinic:${BUILD_NUMBER}-dev'
