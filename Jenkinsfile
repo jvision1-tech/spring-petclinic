@@ -5,7 +5,7 @@ pipeline{
     }
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('docker-jenkins')
-        DOCKERUSER="charityngenge"
+        DOCKERUSER="jvision1"
 	    // AWS_ACCESS_KEY_ID=credentials('aws-access-id')
         // AWS_SECRET_ACCESS_KEY=credentials('aws-secret-id')
         // AWS_DEFAULT_REGION=('us-east-1')	
